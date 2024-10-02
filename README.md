@@ -8,7 +8,7 @@ python run.py
 ### Getting random numbers from the website.
 1. Generate a random number between 1 and 10000
 2. Type: "string",
-         "int",
+         "interger",
          "binary",
          "octal",
          "hexadecimal",
