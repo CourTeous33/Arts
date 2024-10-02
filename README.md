@@ -1,6 +1,5 @@
 # Arts
 
-
-'''
+~~~
 python run.py
-'''
+~~~
