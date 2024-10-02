@@ -1,6 +1,6 @@
 import random
 
-def gen(Type="string"):
+def gen(Type="string", num=0):
     '''
     Generate a random number between 1 and 100
     Type: str, default "string"
@@ -10,18 +10,19 @@ def gen(Type="string"):
                           "octal",
                           "hexadecimal",
     '''
-    # output = str(random.randint(1, 100))
+    num = random.randint(1, 10000)
+
     if Type == "string":
-        output = str(random.randint(1, 100))
+        output = str(num)
     elif Type == "int":
-        output = random.randint(1, 100)
+        output = num
     elif Type == "binary":
-        output = bin(random.randint(1, 100))
+        output = bin(num)
     elif Type == "octal":
-        output = oct(random.randint(1, 100))
+        output = oct(num)
     elif Type == "hexadecimal":
-        output = hex(random.randint(1, 100))
+        output = hex(num)
     else:
-        output = output = str(random.randint(1, 100))
+        output = str(num)
         
     return output
