@@ -10,18 +10,25 @@ def gen(Type="string", num=0):
                           "octal",
                           "hexadecimal",
     '''
-    num = random.randint(1, 10000)
+    # compare = [0, 2, 4, 8, 16, 32, 64, 128]
+    # num = [random.randint(0, 1) for i in range(8)]
+    num = random.randint(0, 255)
 
     if Type == "string":
-        output = str(num)
+        output = f'{num:0b}'
+        output = output.zfill(8)
     elif Type == "int":
-        output = num
+        output = str(num)
+        output = output.zfill(3)
     elif Type == "binary":
-        output = bin(num)
+        output = f'{num:0b}'
+        output = output.zfill(8)
     elif Type == "octal":
-        output = oct(num)
+        output = f'{num:0o}'
+        output = output.zfill(4)
     elif Type == "hexadecimal":
-        output = hex(num)
+        output = f'{num:0x}'
+        output = output.zfill(2)
     else:
         output = str(num)
         
