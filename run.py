@@ -2,6 +2,7 @@ import flask
 from flask_cors import CORS
 from utils.number import gen
 from utils.picture import gen_img
+from utils.alphabet import gen_alphabet
 from flask import render_template, request, jsonify
 
 app = flask.Flask(__name__)
@@ -22,6 +23,7 @@ def random():
         "number": number,
         "img": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
         "pixel": f"rgb{rgb}",
+        "alphabet": gen_alphabet(),
     }
     return render_template('Random_num.html', appInfo=appInfo)
 
@@ -41,6 +43,12 @@ def get_colours():
     request_data = request.get_json()
     fig = gen_img()
     return jsonify({"pixel": fig})
+
+@app.route('/Alphabet', methods=['POST'])
+def get_alphabet():
+    request_data = request.get_json()
+    aplphbet = gen_alphabet()
+    return jsonify({"Random Alphabet": aplphbet})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
