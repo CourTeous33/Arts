@@ -3,6 +3,8 @@ from flask_cors import CORS
 from utils.number import gen
 from utils.picture import gen_img
 from utils.alphabet import gen_alphabet
+from utils.permute import gen_permute_sets
+from utils.dice import gen_dice_sets
 from flask import render_template, request, jsonify
 
 app = flask.Flask(__name__)
@@ -49,6 +51,22 @@ def get_alphabet():
     request_data = request.get_json()
     aplphbet = gen_alphabet()
     return jsonify({"Random Alphabet": aplphbet})
+
+@app.route('/Permute', methods=['POST'])
+def get_permute():
+    request_data = request.get_json()
+    sets = request_data['sets']
+    ran = request_data['ran']
+    return jsonify(gen_permute_sets(sets, ran))
+
+@app.route('/Dice', methods=['POST'])
+def get_dice():
+    request_data = request.get_json()
+    sets = request_data['sets']
+    ran = request_data['ran']
+    min_num = request_data['min_num']
+    max_num = request_data['max_num']
+    return jsonify(gen_dice_sets(sets, ran, min_num, max_num))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
