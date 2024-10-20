@@ -51,6 +51,28 @@
           color: white;
         }
 
+        .button4 {
+          background-color: white; 
+          color: black; 
+          border: 2px solid #008CBA;
+        }
+        
+        .button4:hover {
+          background-color: #008CBA;
+          color: white;
+        }
+
+        .button5 {
+          background-color: white; 
+          color: black; 
+          border: 2px solid #7726f1;
+        }
+        
+        .button5:hover {
+          background-color: #7726f1;
+          color: white;
+        }
+
         </style>
 </head>
 
@@ -143,18 +165,39 @@
 
 <body>
     <h1>Random pixel</h1>
-    <p>Random_pixel = {{appInfo.alphabet}}</p>
-    <p>My first paragraph.</p>
-    <div style="width: 120px;heignt:120px;background-color: blue;">
+    <!-- <div style="background-color:purple;">紫色效果的 DIV 背景顏色</div> -->
+    <div id="colorBox" style="width:15px; height:30px; background-color: #ffffff;">
     </div>
-    <!-- <script>
-        // 定義樣式變數
-        let bgColor = appInfo.pixel;
+    
+    <button id="Change"> <a class="button button4"> Change Color </a> </button>
+    <button id="Stop"> <a class="button button5"> Stop </a> </button>
 
-        // 使用樣板字串設定多個樣式
-        let divElement = document.getElementById("myDiv");
-        divElement.style = `background-color: ${bgColor}; width: 120px; height: 120px;`;
-    </script> -->
+    <script>
+        function changeColor() {
+        fetch('/pixel') // 向 Flask 應用發送請求
+            .then(response => response.text()) // 獲取返回的時間數據
+            .then(data => {
+                document.getElementById('colorBox').style.backgroundColor = data; // 更新 HTML 元素的內容
+            });
+    }
+
+        // 綁定按鈕的點擊事件
+        document.getElementById('Change').addEventListener('click', function() {
+            // 每秒執行一次 updateTime 函數，並保存定時器的 ID
+            intervalId = setInterval(changeColor, 100);
+        });
+
+        // 停止更新按鈕的點擊事件
+        document.getElementById('Stop').addEventListener('click', function() {
+                // 清除定時器
+                clearInterval(intervalId);
+            });
+
+        // 停止定時器的函數
+        function stopUpdating() {
+            clearInterval(intervalId); // 清除定時器
+        }
+    </script>
 
 </body>
 </html>

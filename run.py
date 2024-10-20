@@ -34,6 +34,11 @@ def generate():
     output = gen()
     return "Random Number = " + output
 
+@app.route('/pixel')
+def pix():
+    rgb = (int(gen("int")), int(gen("int")), int(gen("int")))
+    return f"rgb{rgb}"
+
 @app.route('/Generate', methods=['POST'])
 def get_numbers():
     request_data = request.get_json()
