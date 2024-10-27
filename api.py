@@ -12,7 +12,6 @@ if __name__ == "__main__":
             print(num, end="")
     print() # 換行
     
-    
     # 更新 10 個色塊
     fig = plt.figure(figsize=(1, 1))
     ax = fig.gca()

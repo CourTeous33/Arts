@@ -1,14 +1,15 @@
-import random
-import numpy as np
 from matplotlib import pyplot as plt
 
-def gen_img():
+def gen_img(random_number=0, idx=0):
     '''
     Generate a random image
     '''
-    R = random.randint(0, 255)
-    G = random.randint(0, 255)
-    B = random.randint(0, 255)
+    R = int(random_number[idx])
+    idx += 1
+    G = int(random_number[idx])
+    idx += 1
+    B = int(random_number[idx])
+    idx += 1
 
     # # Display the image
     # fig = plt.figure()
@@ -16,8 +17,11 @@ def gen_img():
     # # ax.set_title('Random Image')
     # ax.imshow([[[R, G, B]]])
     # # print(np.array([[[R, G, B]]]).shape)
-    return [[[R, G, B]]]
+    return [[[R, G, B]]], idx
 
 if __name__ == "__main__":
-    fig = gen_img()
-    plt.show()
+    color = [10,100,188] 
+    idx = 0
+    fig, idx = gen_img(color, idx)
+    print(fig)
+    # plt.show()

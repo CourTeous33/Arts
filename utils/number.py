@@ -1,6 +1,4 @@
-import random
-
-def gen(Type="string", num=0):
+def gen(Type="string", random_number=0, idx=0):
     '''
     Generate a random number between 1 and 100
     Type: str, default "string"
@@ -12,8 +10,8 @@ def gen(Type="string", num=0):
     '''
     # compare = [0, 2, 4, 8, 16, 32, 64, 128]
     # num = [random.randint(0, 1) for i in range(8)]
-    num = random.randint(0, 255)
-
+    # num = random.randint(0, 255)
+    num = random_number[idx]
     if Type == "string":
         output = f'{num:0b}'
         output = output.zfill(8)
@@ -31,5 +29,6 @@ def gen(Type="string", num=0):
         output = output.zfill(2)
     else:
         output = str(num)
-        
-    return output
+
+    idx+=1
+    return output, idx
