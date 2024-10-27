@@ -7,6 +7,7 @@ if __name__ == "__main__":
     print("Random Number")
     for i in range(3):
         res = requests.post('http://127.0.0.1:8080/Generate', json={"Type": "hexadecimal"})
+        # 172.20.10.2
         if res.ok:
             num = res.json()["Random Number"]
             print(num, end="")
