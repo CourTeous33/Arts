@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Blossom</title>
+    <style>
+        .button {
+          border: none;
+          color: rgb(0, 0, 0);
+          padding: 16px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          transition-duration: 0.4s;
+          cursor: pointer;
+        }
+        
+        .button1 {
+          background-color: white; 
+          color: black; 
+          border: 2px solid #04AA6D;
+        }
+        
+        .button1:hover {
+          background-color: #04AA6D;
+          color: white;
+        }
+        
+        .button2 {
+          background-color: white; 
+          color: black; 
+          border: 2px solid #008CBA;
+        }
+        
+        .button2:hover {
+          background-color: #008CBA;
+          color: white;
+        }
+        
+        </style>
+</head>
+<body>
+    <h1>Quantum Blossom</h1>
+    <h2>Get your flower tag</h2>
+    <div id="hashDisplay">Your flower tag will appear here</div>
+    <button id="getHashButton"> <a class="button button2">Generate Your Tag</a> </button>
+
+    <script>
+        document.getElementById('getHashButton').addEventListener('click', function() {
+            fetch('/get_number') // TODO: change to actual endpoint
+                .then(response => response.text())
+                .then(data => {
+                    // Convert data to CRC32 hash
+                    const crc32 = (str) => {
+                        let crc = -1;
+                        for (let i = 0; i < str.length; i++) {
+                            let byte = str.charCodeAt(i);
+                            crc = crc ^ byte;
+                            for (let j = 0; j < 8; j++) {
+                                crc = (crc & 1) ? ((crc >>> 1) ^ 0xEDB88320) : (crc >>> 1);
+                            }
+                        }
+                        return (~crc >>> 0).toString(16).toUpperCase();
+                    };
+                    data = crc32(data); //TODO: change data to where the random number is returned
+                    document.getElementById('hashDisplay').textContent = "Your flower tag: " + data;
+                });
+        });
+    </script>
+    <!-- {% if appInfo.number %}
+        <p>Random Number = {{appInfo.number}}</p>
+    {% else %}
+        <p>Random Number = 0</p>
+    {% endif %} -->
+
+
+</body>
+</html>
