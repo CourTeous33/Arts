@@ -21,10 +21,11 @@ def load_file():
     idx = 0
 
 def check_file():
-    if idx >= 2048:
-        files = list(Path("./data/").glob("*.npy"))[0]
-        Path(files).unlink()
-        load_file()
+    pass
+    # if idx >= 2048:
+    #     files = list(Path("./data/").glob("*.npy"))[0]
+    #     Path(files).unlink()
+    #     load_file()
 
 if __name__ == "__main__":
     load_file()
@@ -62,10 +63,10 @@ def generate():
 @app.route('/pixel')
 def pix():
     global random_number, idx
-    r, idx = int(gen("int", random_number=random_number, idx=idx))
-    g, idx = int(gen("int", random_number=random_number, idx=idx))
-    b, idx = int(gen("int", random_number=random_number, idx=idx))
-    rgb = (r, g, b)
+    r, idx = gen("int", random_number=random_number, idx=idx)
+    g, idx = gen("int", random_number=random_number, idx=idx)
+    b, idx = gen("int", random_number=random_number, idx=idx)
+    rgb = (int(r), int(g), int(b))
     check_file()
     return f"rgb{rgb}"
 

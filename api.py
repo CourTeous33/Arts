@@ -6,8 +6,8 @@ if __name__ == "__main__":
     # 呼叫 10 個變數
     print("Random Number")
     for i in range(3):
-        res = requests.post('http://127.0.0.1:8080/Generate', json={"Type": "hexadecimal"})
         # 172.20.10.2
+        res = requests.post('http://172.20.10.2:8080/Generate', json={"Type": "hexadecimal"})
         if res.ok:
             num = res.json()["Random Number"]
             print(num, end="")
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     plt.pause(0.5)
 
     for i in range(10):
-        res = requests.post('http://127.0.0.1:8080/Picture', json={})
+        res = requests.post('http://172.20.10.2:8080/Picture', json={})
         if res.ok:
             rgb = res.json()["pixel"]
             img.set_data(rgb)
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     # 呼叫1024個字元
     print("Alphabet")
     for i in range(1024):
-        res = requests.post('http://127.0.0.1:8080/Alphabet', json={})
+        res = requests.post('http://172.20.10.2:8080/Alphabet', json={})
         if res.ok:
             word = res.json()["Random Alphabet"]
             print(word, end="")
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     
     # 呼叫5個排列
     print("Permute")
-    res = requests.post('http://127.0.0.1:8080/Permute', json={"sets": 5, "ran": 6})
+    res = requests.post('http://172.20.10.2:8080/Permute', json={"sets": 5, "ran": 6})
     if res.ok:
         sets = len(res.json().keys())
         for i in range(sets):
@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
     # 呼叫6個骰子
     print("Dice")
-    res = requests.post('http://127.0.0.1:8080/Dice', json={"sets": 4, "ran": 6, "min_num": 1, "max_num": 49})
+    res = requests.post('http://172.20.10.2:8080/Dice', json={"sets": 4, "ran": 6, "min_num": 1, "max_num": 49})
     if res.ok:
         sets = len(res.json().keys())
         for i in range(sets):
